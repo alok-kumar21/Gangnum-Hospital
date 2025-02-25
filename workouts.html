@@ -47,32 +47,58 @@
     <main>
       <section class="container">
         <h1>Workout Report</h1>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h2>Day 1</h2>
-              </div>
-              <div class="card-body">
-                <p><strong>Exercise:</strong> Running</p>
-                <p><strong>Duration:</strong>30 minutes</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h2>Day 1</h2>
-              </div>
-              <div class="card-body">
-                <p><strong>Exercise:</strong> Running</p>
-                <p><strong>Duration:</strong>30 minutes</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="row" id="row"></div>
       </section>
     </main>
+
+    <script>
+      const report = [
+        {
+          day: "Day 1",
+          exercise: "Running",
+          duration: "30 minutes",
+        },
+        {
+          day: "Day 2",
+          exercise: "Running",
+          duration: "40 minutes",
+        },
+      ];
+
+      for (let i = 0; i < report.length; i++) {
+        const row = document.querySelector("#row");
+
+        const col = document.createElement("col");
+        col.className = "col-md-6 mt-3";
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const cardHeader = document.createElement("div");
+        cardHeader.className = "card-header";
+
+        const h2 = document.createElement("h2");
+        h2.textContent = `${report[i].day}`;
+
+        const cardBody = document.createElement("div");
+        cardBody.className = "card-body";
+
+        const p1 = document.createElement("p");
+        p1.innerHTML = `<strong>Exercise: </strong>${report[i].exercise}`;
+
+        const p2 = document.createElement("p");
+        p2.innerHTML = `<strong>Duration: </strong>${report[i].duration}`;
+
+        cardHeader.appendChild(h2);
+        cardBody.appendChild(p1);
+        cardBody.appendChild(p2);
+        card.appendChild(cardHeader);
+        card.appendChild(cardBody);
+
+        col.appendChild(card);
+
+        row.appendChild(col);
+      }
+    </script>
   </body>
 </html>
